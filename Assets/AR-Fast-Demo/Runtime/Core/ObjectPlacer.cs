@@ -1,7 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
 
 public class ObjectPlacer : MonoBehaviour
 {
@@ -25,13 +22,11 @@ public class ObjectPlacer : MonoBehaviour
         if (touch.phase != TouchPhase.Began)
             return;
         var ray = ARManager.Instance.SessionOrigin.camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        if (ARManager.Instance.RaycastManager.Raycast(ray, ARHitResults, TrackableType.PlaneWithinPolygon))
+        if (Physics.Raycast(ray, out var hit))
         {
-            var hitPose = ARHitResults[0].pose;
             _gameObject.SetActive(true);
-            _gameObject.transform.position = hitPose.position;
+            _gameObject.transform.position = hit.point;
         }
     }
 
-    public List<ARRaycastHit> ARHitResults { get; set; }
 }
