@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class UIShowServerAddress : MonoBehaviour
 {
-    [SerializeField] private WebServer.WebServer _server;
     [SerializeField] private TMP_Text _hostText;
 
     private List<string> _urls;

@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "com.nox7atra.unityhttpserver": {
-      "version": "https://github.com/Nox7atra/UnitySimpleHttpServer.git?path=/Assets/UnityHttpServer",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "705567a6eb98ca336ccd208d07cc00a118aaa4a8"
-    },
     "com.unity.collab-proxy": {
       "version": "1.15.15",
       "depth": 0,

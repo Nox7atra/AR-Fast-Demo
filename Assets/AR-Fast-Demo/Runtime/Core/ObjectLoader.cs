@@ -9,6 +9,9 @@ using UnityEngine.Networking;
 
 public class ObjectLoader : MonoBehaviour
 {
+    private const string Host_Key = "HOST_KEY";
+    private const string Bundle_Key = "BUNDLE_KEY";
+    private const string Object_Key = "OBJECT_KEY";
     [SerializeField] private ObjectPlacer _objectPlacer;
     [SerializeField] private TMP_InputField _host;
     [SerializeField] private TMP_InputField _bundleName;
@@ -16,7 +19,18 @@ public class ObjectLoader : MonoBehaviour
     [SerializeField] private TMP_Text _error;
     [SerializeField] private GameObject _loadObjectPanel;
 
-    private Dictionary<string, AssetBundle> _loadedAssetBundles;
+    private Dictionary<string, AssetBundle> _loadedAssetBundles = new Dictionary<string, AssetBundle>();
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey(Host_Key))
+        {
+            _host.text = PlayerPrefs.GetString(Host_Key);
+            _bundleName.text = PlayerPrefs.GetString(Bundle_Key);
+            _objectName.text = PlayerPrefs.GetString(Object_Key);
+        }
+    }
+
     public void OnBack()
     {
         _loadObjectPanel.SetActive(true);
@@ -36,6 +50,10 @@ public class ObjectLoader : MonoBehaviour
     }
     private void LoadObject(string host, string bundleName, string objectId)
     {
+        PlayerPrefs.SetString(Host_Key, host);
+        PlayerPrefs.SetString(Bundle_Key, bundleName);
+        PlayerPrefs.SetString(Object_Key, objectId);
+        PlayerPrefs.Save();
         StartCoroutine(LoadBundle(host, bundleName, objectId, go =>
         {
             _loadObjectPanel.SetActive(false);
@@ -60,6 +78,7 @@ public class ObjectLoader : MonoBehaviour
             {
                 _error.text = request.error;
             }
+            
             AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(request);
             OnSuccess?.Invoke(bundle.LoadAsset(objectId) as GameObject);
         }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4991984d2f26b847be2f3b9c6cca441, type: 3}
   m_Name: AssetBundleBuildSettings
   m_EditorClassIdentifier: 
-  AssetBundleDirectory: ./Build/asset_bundles/test/
+  AssetBundleDirectoryObject: {fileID: 102900000, guid: 26e41df3788d43e4da77a182d53588d2, type: 3}
   Platforms: 0d000000
   AssetBundleNamesToBuild: []

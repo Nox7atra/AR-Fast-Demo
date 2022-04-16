@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class AssetBundlesBuilder 
 {
-    
     public static void BuildAllAssetBundles(AssetBundlesBuildSettings settings)
     {
         BuildCustomAssetBundles(
