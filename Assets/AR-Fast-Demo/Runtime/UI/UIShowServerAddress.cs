@@ -20,7 +20,7 @@ public class UIShowServerAddress : MonoBehaviour
             if (ip.AddressFamily == AddressFamily.InterNetwork)
             {
                 var ipStr = ip.ToString();
-                _urls.Add($"http://{ipStr}:{_server.ServerPort}");
+                _urls.Add($"http://{ipStr}:{10020}");
             }
         }
 
