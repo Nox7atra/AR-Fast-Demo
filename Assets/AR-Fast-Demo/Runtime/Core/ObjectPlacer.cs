@@ -13,14 +13,11 @@ public class ObjectPlacer : MonoBehaviour
         _gameObject = Instantiate(go);
         _gameObject.SetActive(false);
     }
-    void Update()
+    private void Update()
     {
         if (Input.touchCount == 0 || !ARManager.Instance.ARSession.enabled)
             return;
-        
-        var touch = Input.GetTouch(0);
-        if (touch.phase != TouchPhase.Began)
-            return;
+    
         var ray = ARManager.Instance.SessionOrigin.camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         if (Physics.Raycast(ray, out var hit))
         {

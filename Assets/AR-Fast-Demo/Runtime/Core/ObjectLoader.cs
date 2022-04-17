@@ -80,6 +80,7 @@ public class ObjectLoader : MonoBehaviour
             }
             
             AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(request);
+            _loadedAssetBundles.Add(bundleName, bundle);
             OnSuccess?.Invoke(bundle.LoadAsset(objectId) as GameObject);
         }
     }
